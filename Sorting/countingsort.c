@@ -42,15 +42,16 @@ int main(){
       //store the element at proper position and increment position variable j
       sorted[j]= i;
       j++;
-      //decrement no. of occurances 
+      //decrement no. of occurances
       x--;
     }
   }
 
-
   printf("After sorting\n");
   for(i=0; i<n; i++){
-    printf("%d\n",sorted[i] );
+    printf("%d  ",sorted[i] );
   }
+
+  printf("\n");
   return 0;
 }

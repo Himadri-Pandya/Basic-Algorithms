@@ -47,7 +47,9 @@ int main(){
 
   printf("After sorting\n");
   for(i=0; i<n; ++i){
-    printf("%d\n",output[i] );
+    printf("%d  ",output[i] );
   }
+
+  printf("\n");
   return 0;
 }
