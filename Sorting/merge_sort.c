@@ -1,37 +1,21 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include "array_io.h"
 
 void conquer(int *,int, int, int);
 void divide(int *, int,int);
 
-int n, *tmparr;
+int *tmparr;
+extern int size;
+extern int* array;
 
-int main(){
+void merge_sort(){
 
   int i;
-  printf("How many elements you want to sort? ");
-  scanf("%d",&n);
-  int arr[n];
 
-  tmparr = (int*)malloc(n*sizeof(int));
-
-  printf("Enter the elements\n");
-
-  for(i=0; i<n; i++){
-    scanf("%d",&arr[i]);
-  }
+  tmparr = (int*)malloc(size*sizeof(int));
 
   //funtion call to divide()
-  divide(arr,0,n-1);
-
-  printf("After sorting\n");
-
-  for(i=0; i<n; i++){
-    printf("%d  ",arr[i]);
-  }
-
-  printf("\n");
-  return 0;
+  divide(array,0,size-1);
 
 }
 

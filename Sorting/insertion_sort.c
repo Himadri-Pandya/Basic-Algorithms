@@ -1,40 +1,25 @@
-#include <stdio.h>
+#include "array_io.h"
 
-int main(){
+extern int size;
+extern int* array;
 
-  printf("How many elements you want to sort? ");
-  int n, i, temp, j;
-  scanf("%d",&n);
-  int arr[n];
+void insertion_sort(){
 
-  printf("Enter the elements\n");
-  for(i=0; i<n; i++){
-    scanf("%d",&arr[i]);
-  }
+  int i, temp, j;
 
-  for(i=1; i<n; i++){
-    temp = arr[i];
+  for(i=1; i<size; i++){
+    temp = array[i];
     j = i-1;
     //while element exists at left side of current element
     while(j>=0){
       //if it's less than current element
-      if(temp<arr[j]){
+      if(temp<array[j]){
         //swap it with element to it's right
-        temp = arr[j];
-        arr[j] = arr[j+1];
-        arr[j+1] = temp ;
+        swap_elements(&array[j], &array[j+1]);
         }
       //to compare the current element with remaining right side elements
-      temp=arr[j];
+      temp=array[j];
       j--;
     }
   }
-
-  printf("Sorted array \n");
-  for(i=0; i<n; i++){
-    printf("%d  ",arr[i]);
-  }
-
-  printf("\n");
-  return 0;
 }

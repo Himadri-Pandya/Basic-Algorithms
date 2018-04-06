@@ -1,33 +1,19 @@
-#include  <stdio.h>
+#include "array_io.h"
 
-void quicksort(int*, int, int);
-void swap(int*, int*);
-int n;
+extern int size;
+extern int* array;
 
-int main(){
+void sort(int*, int, int);
+
+void quick_sort(){
 
   int i;
-  printf("How many elements you want to sort? ");
-  scanf("%d",&n);
-  int arr[n];
 
-  printf("Enter the elements\n");
-  for(i=0; i<n; i++){
-    scanf("%d",&arr[i]);
-  }
+  sort(array,0, size-1);
 
-  quicksort(arr,0, n-1);
-
-  printf("After sorting\n");
-  for(i=0; i<n; i++){
-    printf("%d  ",arr[i]);
-  }
-
-  printf("\n");
-  return 0;
 }
 
-void quicksort(int* arr,int l, int h){
+void sort(int* arr,int l, int h){
   int pivot = l;
   int i = l+1;
   int j = h;
@@ -43,19 +29,12 @@ void quicksort(int* arr,int l, int h){
         j--;
       }
       else {
-        swap(&arr[i], &arr[j]);
+        swap_elements(&arr[i], &arr[j]);
         i++;
       }
     }
   }
-  swap(&arr[pivot],&arr[j]);
-  quicksort(arr,l,j-1);
-  quicksort(arr,j+1,h);
-}
-
-void swap(int* x, int* y){
-  int temp;
-  temp = *x;
-  *x = *y;
-  *y = temp;
+  swap_elements(&arr[pivot],&arr[j]);
+  sort(arr,l,j-1);
+  sort(arr,j+1,h);
 }

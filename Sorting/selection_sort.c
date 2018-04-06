@@ -1,36 +1,19 @@
-#include <stdio.h>
+#include "array_io.h"
 
-int main(){
+extern int size;
+extern int* array;
 
-  int n, i, temp, j, min;
+void selection_sort(){
 
-  printf("How many elements ? \n" );
-  scanf("%d",&n);
+  int i, temp, j, min;
 
-  int arr[n];
-
-  printf("Enter the elements\n");
-
-  for(i=0 ; i <n; i++){
-    scanf("%d",&arr[i]);
-  }
-
-  for(i=0; i<n; i++){
-    for(j=i+1 ; j<n; j++){
-      if(arr[j] < arr[i]){
+  for(i=0; i<size; i++){
+    for(j=i+1 ; j<size; j++){
+      if(array[j] < array[i]){
         min = j;
       }
-      temp = arr[min];
-      arr[min] = arr[i];
-      arr[i] = temp;
+      swap_elements(&array[min], &array[i]);
     }
   }
 
-  printf("After sorting\n");
-  for(int i=0 ; i <n; i++){
-    printf("%d  ",arr[i]);
-  }
-
-  printf("\n");
-  return 0;
 }

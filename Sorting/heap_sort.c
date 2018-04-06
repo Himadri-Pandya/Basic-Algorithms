@@ -1,56 +1,46 @@
 #include <stdio.h>
+#include "array_io.h"
 
-int n;
+extern int size;
+extern int* array;
 
 void heapify(int *, int);
-void swap(int*, int*);
 
-int main(){
+void heap_sort(){
 
-  int i,j, size;
-  printf("How many elements you want to sort? ");
-  scanf("%d",&n);
-  int arr[n],sorted[n];
+  int i,j, n, sorted[size];
 
-  //storing n in size as n gets modifies further in the program
-  size = n;
+  //storing size in n as n gets modifies further in the program
+  n = size;
 
-  printf("Enter the elements\n");
-  for(i=0; i<n; i++){
-    scanf("%d",&arr[i]);
+  for(i=0; i<size ; i++){
     //creating min heap
-    heapify(arr,i);
+    heapify(array,i);
   }
 
   printf("After heapifying\n");
-  for(i=0; i<n; i++){
-    printf("%d  ",arr[i]);
-  }
+  print_array();
 
-  printf("\n");
-
-  for(i=0; n>0; i++){
+  for(i=0; size>0; i++){
 
     //swap first(min) element with last element in heap
-    swap(&arr[0],&arr[n-1]);
+    swap_elements(&array[0],&array[size-1]);
     //insert the last element in sorted output array
-    sorted[i]=arr[n-1];
+    sorted[i]=array[size-1];
     //delete the last node in heap
-    n--;
+    size--;
 
     //adjusting the heap after performing above operations
-    for(j=0; j <n; j++){
-      heapify(arr,j);
+    for(j=0; j <size; j++){
+      heapify(array,j);
     }
   }
 
-  printf("After sorting\n");
-  for(i=0; i<size; i++){
-    printf("%d  ",sorted[i]);
+  for(i=0; i<n; i++){
+    array[i]=sorted[i];
   }
 
-  printf("\n");
-  return 0 ;
+  size = n;
 }
 
 void heapify(int* unsorted, int index){
@@ -66,15 +56,7 @@ void heapify(int* unsorted, int index){
 
   //if child is smaller than parent, swap and do this recursively in bottom-up manner until we reach to the rootnode
   if(unsorted[index] < unsorted[parent]){
-      swap(&unsorted[index], &unsorted[parent]);
+      swap_elements(&unsorted[index], &unsorted[parent]);
       heapify(unsorted,parent);
     }
-
-}
-
-void swap(int* x, int* y){
-  int temp;
-  temp = *x;
-  *x = *y;
-  *y = temp;
 }
